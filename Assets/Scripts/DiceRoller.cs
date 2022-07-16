@@ -9,6 +9,7 @@ public class DiceRoller : MonoBehaviour
     public Transform diceSpawnTransform;
     public float diceMaxLaunchForce = 50f;
     public float diceMaxLaunchTorque = 50f;
+    public int desiredDiceRoll = 2;
 
     private GameObject launchedDice;
 
@@ -55,11 +56,11 @@ public class DiceRoller : MonoBehaviour
             Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque),
             Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque)));
 
-        SimulateDiceRoll(diceRB);
+        SimulateDiceRoll(diceRB, desiredDiceRoll);
 
     }
 
-    private void SimulateDiceRoll(Rigidbody diceRB)
+    private void SimulateDiceRoll(Rigidbody diceRB, int desiredValue)
     {
         Physics.autoSimulation = false;
 
@@ -70,7 +71,7 @@ public class DiceRoller : MonoBehaviour
         dicePositions.Add(diceRB.position);
         diceRotations.Add(diceRB.rotation);
 
-        int desiredUpValue = 0;
+        int endingFaceUp = 0;
         for (int i = 0; i < DICEMAXSIMULATIONS; i++)
         {
             if (diceRB.IsSleeping())
@@ -79,7 +80,8 @@ public class DiceRoller : MonoBehaviour
                 Dice dice = diceRB.gameObject.GetComponent<Dice>();
                 if (dice != null)
                 {
-                    desiredUpValue = dice.GetFaceUpNumber();
+                    //keep track of current face up
+                    endingFaceUp = dice.GetFaceUpNumber();
                 }
 
                 break;
@@ -98,15 +100,43 @@ public class DiceRoller : MonoBehaviour
 
         //now we have fully simulated the collision
         //now run the simulation through Timing
-        Timing.RunCoroutine(FakeSimulateDiceRoll(diceRB, desiredUpValue));
+        Timing.RunCoroutine(FakeSimulateDiceRoll(diceRB, desiredValue, endingFaceUp));
     }
 
-    private IEnumerator<float> FakeSimulateDiceRoll(Rigidbody diceRB, int desiredUpValue)
+    private IEnumerator<float> FakeSimulateDiceRoll(Rigidbody diceRB, int desiredUpValue, int endingFaceUp)
     {
+        Dice dice = diceRB.GetComponent<Dice>();
+
+        if (dice == null)
+        {
+            Debug.LogError("WTF it's all scuffed");
+            yield break;
+        }
+
         //don't let dice ACTUALLY simulate
         diceRB.isKinematic = true;
 
-        Debug.Log("desiredUpValue: " + desiredUpValue);
+        //adjust starting rotation so desired face up is where ending faceup is
+        //retroactively go through ALL rotations and apply adjustment
+
+        Quaternion adjustmentRot = Quaternion.identity * Quaternion.FromToRotation(dice.GetDiceAxis(endingFaceUp).axis, dice.GetDiceAxis(desiredUpValue).axis);
+
+        //doubleCheck adjustment is correct
+        diceRB.MoveRotation(diceRB.rotation * adjustmentRot);
+        if (dice.GetFaceUpNumber() != desiredUpValue)
+        {
+            //we got a fucky rotation, reverse it
+            adjustmentRot = Quaternion.identity * Quaternion.FromToRotation(dice.GetDiceAxis(desiredUpValue).axis, dice.GetDiceAxis(endingFaceUp).axis);
+        }
+        //reset rotation
+        diceRB.MoveRotation(diceRotations[0]);
+
+        if (dice.diceMeshTransform != null)
+        {
+            dice.diceMeshTransform.rotation = dice.diceMeshTransform.rotation * adjustmentRot;
+        }
+
+        //Debug.Log("desiredUpValue: " + endingFaceUp);
 
         int simulationIndex = 0;
         while (simulationIndex < dicePositions.Count)

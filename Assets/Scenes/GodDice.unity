@@ -154,8 +154,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dicePrefab: {fileID: 6902930260036234496, guid: 89bb5aa57d41b944586caa69fbf0e17b, type: 3}
   diceSpawnTransform: {fileID: 1305030071}
-  diceMaxLaunchForce: 300
-  diceMaxLaunchTorque: 100
+  diceMaxLaunchForce: 500
+  diceMaxLaunchTorque: 200
+  desiredDiceRoll: 6
 --- !u!4 &189908421
 Transform:
   m_ObjectHideFlags: 0

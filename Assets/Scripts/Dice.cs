@@ -11,6 +11,9 @@ public struct DiceAxis
 
 public class Dice : MonoBehaviour
 {
+    public Transform diceMeshTransform;
+
+    [Space(10)]
     public DiceAxis oneAxis; 
     public DiceAxis twoAxis; 
     public DiceAxis threeAxis; 
@@ -65,39 +68,64 @@ public class Dice : MonoBehaviour
         return 0;
     }
 
-    public Vector3 GetWorldNumberAxis(int value)
+    public DiceAxis GetDiceAxis(int value)
     {
-        switch (value)
+        switch(value)
         {
             case 1:
-                return transform.TransformVector(oneAxis.axis);
+                return oneAxis;
             case 2:
-                return transform.TransformVector(twoAxis.axis);
+                return twoAxis;
             case 3:
-                return transform.TransformVector(threeAxis.axis);
+                return threeAxis;
             case 4:
-                return transform.TransformVector(fourAxis.axis);
+                return fourAxis;
             case 5:
-                return transform.TransformVector(fiveAxis.axis);
+                return fiveAxis;
             case 6:
-                return transform.TransformVector(sixAxis.axis);
+                return sixAxis;
             default:
-                Debug.LogError("Invalid axis value: " + value);
-                return Vector3.zero;
+                return default;
         }
+    }
+
+    public Vector3 GetDiceAxisWorldVector(int value)
+    {
+        DiceAxis diceAxis = GetDiceAxis(value);
+
+        return CalculateWorldAxisVector(diceAxis);
+    }
+
+    private Vector3 CalculateWorldAxisVector(DiceAxis diceAxis)
+    {
+        Vector3 diceLocalVector = diceAxis.axis;
+
+        Vector3 axisVectorRight = new Vector3(diceLocalVector.x * transform.right.x,
+            diceLocalVector.x * transform.right.y,
+            diceLocalVector.x * transform.right.z);
+        Vector3 axisVectorUp = new Vector3(diceLocalVector.y * transform.up.x,
+            diceLocalVector.y * transform.up.y,
+            diceLocalVector.y * transform.up.z);
+        Vector3 axisVectorForward = new Vector3(diceLocalVector.z * transform.forward.x,
+            diceLocalVector.z * transform.forward.y,
+            diceLocalVector.z * transform.forward.z);
+
+        return axisVectorRight + axisVectorUp + axisVectorForward;
     }
 
     private float GetAxisUpDot(DiceAxis diceAxis)
     {
-        Vector3 axisVectorRight = new Vector3(diceAxis.axis.x * transform.right.x, diceAxis.axis.x * transform.right.y, diceAxis.axis.x * transform.right.z);
-        Vector3 axisVectorUp = new Vector3(diceAxis.axis.y * transform.up.x, diceAxis.axis.y * transform.up.y, diceAxis.axis.y * transform.up.z);
-        Vector3 axisVectorForward = new Vector3(diceAxis.axis.z * transform.forward.x, diceAxis.axis.z * transform.forward.y, diceAxis.axis.z * transform.forward.z);
+        //Vector3 axisVectorRight = new Vector3(diceAxis.axis.x * transform.right.x, diceAxis.axis.x * transform.right.y, diceAxis.axis.x * transform.right.z);
+        //Vector3 axisVectorUp = new Vector3(diceAxis.axis.y * transform.up.x, diceAxis.axis.y * transform.up.y, diceAxis.axis.y * transform.up.z);
+        //Vector3 axisVectorForward = new Vector3(diceAxis.axis.z * transform.forward.x, diceAxis.axis.z * transform.forward.y, diceAxis.axis.z * transform.forward.z);
 
-        Vector3 axisVectorCombined = axisVectorRight + axisVectorUp + axisVectorForward;
+        //Vector3 axisVectorCombined = axisVectorRight + axisVectorUp + axisVectorForward;
 
-        Debug.Log($"Dice Axis {diceAxis.value} with Vector: {axisVectorCombined} Transform right: {transform.right}");
+        Vector3 worldAxisVector = CalculateWorldAxisVector(diceAxis);
 
-        return Vector3.Dot(axisVectorCombined, Vector3.up);
+        return Vector3.Dot(worldAxisVector, Vector3.up);
 
     }
+
+
 }
