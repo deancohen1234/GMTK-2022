@@ -152,11 +152,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9943e3c1622dc1640b13c0d8e737bd81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diceProbablity: {fileID: 11400000, guid: 0130a7a49d84f1c469ac501e597d4e84, type: 2}
   dicePrefab: {fileID: 6902930260036234496, guid: 89bb5aa57d41b944586caa69fbf0e17b, type: 3}
   diceSpawnTransform: {fileID: 1305030071}
   diceMaxLaunchForce: 700
   diceMaxLaunchTorque: 400
   desiredDiceRoll: 4
+  characterMassOverride: 0
+  testCount: 500
 --- !u!4 &189908421
 Transform:
   m_ObjectHideFlags: 0
