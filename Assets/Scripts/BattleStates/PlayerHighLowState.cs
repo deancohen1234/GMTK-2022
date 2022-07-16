@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "Player Roll Battle State", menuName = "BattleStates/PlayerRoll")]
-public class PlayerRollBattleState : DefaultBattleState
+[CreateAssetMenu(fileName = "PlayerHighLow", menuName = "BattleStates/PlayerHighLow")]
+public class PlayerHighLowState : DefaultBattleState
 {
     public float startDelay = 0.75f;
 
     public override IEnumerator<float> EnterState()
     {
         yield return Timing.WaitForSeconds(startDelay);
-        Debug.Log("In Player Roll State");
+        Debug.Log("In High Low State");
 
         if (battleMenuPrefab != null)
         {
@@ -24,11 +24,13 @@ public class PlayerRollBattleState : DefaultBattleState
                 battleMenu.Initialize(this);
             }
         }
-        
+
     }
 
     public override IEnumerator<float> ExitState()
     {
+        Debug.Log("Exiting BS: " + name);
+
         if (battleMenu != null)
         {
             battleMenu.Close();

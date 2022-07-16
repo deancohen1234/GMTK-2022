@@ -19,12 +19,18 @@ public class BattleManager : MonoBehaviour
     public Transform playerStartTransform;
     public Transform enemyStartTransform;
 
+    [Header("Betting")]
+    public int maxBet = 5;
+
     private IBattleState[] stateInterfaces;
     private int currentBattleStateIndex = 0;
 
     //Characters
     private Character player;
     private Character currentEnemy;
+    //-1 = low +1 = high
+    private int playerHighLowGuess = 0;
+    private int playerBet = 0;
 
     private static BattleManager singleton;
 
@@ -85,7 +91,10 @@ public class BattleManager : MonoBehaviour
 
         //update current state and start next one
         currentBattleStateIndex = (int)Mathf.Repeat(currentBattleStateIndex + 1, stateInterfaces.Length);
-        Timing.RunCoroutine(GetCurrentBattleState().EnterState());
+        if (GetCurrentBattleState() != null)
+        {
+            Timing.RunCoroutine(GetCurrentBattleState().EnterState());
+        }
     }
 
     private IBattleState GetCurrentBattleState()
@@ -96,6 +105,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
+            Debug.LogError("Battle State is Null!");
             return null;
         }
     }
@@ -130,6 +140,17 @@ public class BattleManager : MonoBehaviour
     public Character GetEnemyCharacter()
     {
         return currentEnemy;
+    }
+
+    public void SetPlayerHighLowGuess(int guess)
+    {
+        playerHighLowGuess = guess;
+    }
+
+    public int UpdateBet(int delta)
+    {
+        playerBet = Mathf.Clamp(playerBet + delta, 0, maxBet);
+        return playerBet;
     }
     #endregion
 }
