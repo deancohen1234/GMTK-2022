@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30cbe04e27f1eac4190dc11be3b26998, type: 3}
-  m_Name: PlayerRoll
+  m_Name: BattleOutcome
   m_EditorClassIdentifier: 
-  battleMenuPrefab: {fileID: 1344027321579077803, guid: 976199e6a754b78488f7f4fa123c5a0a, type: 3}
-  startDelay: 0.25
+  battleMenuPrefab: {fileID: 6390188783140684450, guid: 84fe5d620e56faf4389136c6f9085b01, type: 3}
+  startDelay: 0.75

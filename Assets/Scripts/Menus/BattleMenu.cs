@@ -23,7 +23,14 @@ public class BattleMenu : MonoBehaviour
             buttons[i].Close();
         }
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        Destroy(gameObject);
+    }
+
+    //kinda a cheeky fix to force an update on a menu if we need it
+    public virtual void UpdateMenu()
+    {
+
     }
 
     public IBattleState GetBattleState()

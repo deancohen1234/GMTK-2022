@@ -12,11 +12,47 @@ public class Character : MonoBehaviour
     protected int health;
     protected int currentRoll;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        health = startingHealth;
     }
+
+    #region Health
+    public int Hurt(int damageAmount)
+    {
+        health -= damageAmount;
+
+        //have UI reflect health changes BEFORE death
+        BattleManager.GetBattleManager().UpdateHUDValues();
+
+        if (health <= 0)
+        {
+            Die();
+        }
+
+        return health;
+    } 
+
+    public int Heal(int healAmount)
+    {
+        health = Mathf.Min(health + healAmount, startingHealth);
+
+        //have UI reflect health changes BEFORE death
+        BattleManager.GetBattleManager().UpdateHUDValues();
+
+        return health;
+    }
+
+    public void Die()
+    {
+        Debug.Log("Character: " + gameObject.name + " died");
+    }
+
+    public float GetPercentOfMaxHealth()
+    {
+        return (float)health / (float)startingHealth;
+    }
+    #endregion
 
     public int Roll()
     {
@@ -24,6 +60,11 @@ public class Character : MonoBehaviour
 
         //get a random number between 1-6
         currentRoll = Random.Range(1, 7);
+        return currentRoll;
+    }
+
+    public int GetLastRoll()
+    {
         return currentRoll;
     }
 

@@ -386,5 +386,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615b7bd7e9e5dc547bdb0fdfd77894ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preRollDisplayDelay: 0.75
-  postRollDisplayDelay: 0.75
+  preRollDisplayDelay: 0.25
+  postRollDisplayDelay: 0.25

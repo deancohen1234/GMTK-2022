@@ -154,15 +154,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preBattleDelay: 0.5
   allBattleStates:
-  - {fileID: 11400000, guid: 7df6cc65852c272498d6383793cd43d7, type: 2}
-  - {fileID: 11400000, guid: 0feadd36b1269914fa84a5f821a41588, type: 2}
-  - {fileID: 11400000, guid: 6ee0b50e85fcff242aa65704c0c57e37, type: 2}
-  - {fileID: 11400000, guid: 8f91634a26062f943ab5a8160a24e28e, type: 2}
+  - {fileID: 11400000, guid: e3effbc5e3ba4f349a806557f47fd745, type: 2}
+  - {fileID: 11400000, guid: 0b37d799f3f19bb47800bf0f1e6aa021, type: 2}
+  - {fileID: 11400000, guid: 8a503d410700db847a30084bf39ab2d1, type: 2}
+  - {fileID: 11400000, guid: 1bb0f2b305dfba649bb1f4bcbc320d22, type: 2}
+  - {fileID: 11400000, guid: 178a18f20171b264fb914674191f14c9, type: 2}
   playerPrefab: {fileID: 5172123558620780390, guid: fc7afa5e2ae69c541a452ac9cd4169b7, type: 3}
   enemyPrefabs:
   - {fileID: 4875728461800136256, guid: 063b171a19f54ad428f78c04502fe600, type: 3}
   playerStartTransform: {fileID: 1774135032}
   enemyStartTransform: {fileID: 1122199092}
+  mainHUDPrefab: {fileID: 2699829616060401653, guid: 2d30ac61990a1b44586540076520575a, type: 3}
   maxBet: 5
 --- !u!4 &249425770
 Transform:

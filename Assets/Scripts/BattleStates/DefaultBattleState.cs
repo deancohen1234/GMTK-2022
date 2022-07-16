@@ -1,3 +1,4 @@
+using MEC;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,23 +9,46 @@ public class DefaultBattleState : ScriptableObject, IBattleState
 {
     [SerializeField]
     protected GameObject battleMenuPrefab;
+    [SerializeField]
+    protected float startDelay = 0.75f;
 
     protected BattleMenu battleMenu;
 
     public virtual IEnumerator<float> EnterState()
     {
-        Debug.LogError("BAD NO ENTER");
-        yield return 0f;
+        yield return Timing.WaitForSeconds(startDelay);
+
+        if (battleMenuPrefab != null)
+        {
+            //don't need to worry about position if it's overlay menu
+            GameObject menuObj = Instantiate(battleMenuPrefab);
+
+            battleMenu = menuObj.GetComponent<BattleMenu>();
+            if (battleMenu != null)
+            {
+                battleMenu.Initialize(this);
+            }
+        }
+
     }
 
     public virtual IEnumerator<float> ExitState()
     {
-        Debug.LogError("BAD NO EXIT");
-        yield return 0f;
+        if (battleMenu != null)
+        {
+            battleMenu.Close();
+        }
+
+        yield return Timing.WaitForSeconds(0);
     }
 
     public virtual bool UpdateState()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            return true;
+        }
+
         return false;
     }
 }

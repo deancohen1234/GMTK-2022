@@ -19,6 +19,10 @@ public class BattleManager : MonoBehaviour
     public Transform playerStartTransform;
     public Transform enemyStartTransform;
 
+    [Header("UI")]
+    //shows player health, enemy health, points, bet odds
+    public GameObject mainHUDPrefab;
+
     [Header("Betting")]
     public int maxBet = 5;
 
@@ -28,8 +32,11 @@ public class BattleManager : MonoBehaviour
     //Characters
     private Character player;
     private Character currentEnemy;
+
+    private BattleMenu hud;
+
     //-1 = low +1 = high
-    private int playerHighLowGuess = 0;
+    private bool isPlayerGuessingHigh = false;
     private int playerBet = 0;
 
     private static BattleManager singleton;
@@ -63,6 +70,17 @@ public class BattleManager : MonoBehaviour
     private void Start()
     {
         SpawnCharacters();
+
+        //spawn in HUD
+        GameObject hudObj = Instantiate(mainHUDPrefab);
+        hud = hudObj.GetComponent<BattleMenu>();
+        if (hud == null)
+        {
+            Debug.LogError("HUD is null!");
+            return;
+        }
+
+        hud.Initialize(null);
 
         //start at first state and run
         currentBattleStateIndex = 0;
@@ -132,6 +150,7 @@ public class BattleManager : MonoBehaviour
         if (currentEnemy == null) { Debug.LogError("No current enemy in Battle Manager!"); return; }
     }
 
+    //maybe don't get characters from battle manager
     public Character GetPlayerCharacter()
     {
         return player;
@@ -142,15 +161,30 @@ public class BattleManager : MonoBehaviour
         return currentEnemy;
     }
 
-    public void SetPlayerHighLowGuess(int guess)
+    public bool GetPlayerHighLowGuess()
     {
-        playerHighLowGuess = guess;
+        return isPlayerGuessingHigh;
+    }
+
+    public void SetPlayerHighLowGuess(bool _isPlayerGuessingHigh)
+    {
+        isPlayerGuessingHigh = _isPlayerGuessingHigh;
     }
 
     public int UpdateBet(int delta)
     {
         playerBet = Mathf.Clamp(playerBet + delta, 0, maxBet);
         return playerBet;
+    }
+    #endregion
+
+    #region HUD
+    public void UpdateHUDValues()
+    {
+        if (hud != null)
+        {
+            hud.UpdateMenu();
+        }
     }
     #endregion
 }

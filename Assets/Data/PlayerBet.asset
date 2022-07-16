@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1caa57c4a272f54eba71cc442cb1617, type: 3}
+  m_Script: {fileID: 11500000, guid: 30cbe04e27f1eac4190dc11be3b26998, type: 3}
   m_Name: PlayerBet
   m_EditorClassIdentifier: 
   battleMenuPrefab: {fileID: 6981400764975281276, guid: 82e38c1ff896524489b512deb348b818, type: 3}
