@@ -10,10 +10,21 @@ public class BattleManager : MonoBehaviour
     [Header("Timings")]
     public float preBattleDelay = 0.5f;
 
+    [Header("Battle States")]
     public DefaultBattleState[] allBattleStates;
+
+    [Header("Character Prefab")]
+    public GameObject playerPrefab;
+    public GameObject[] enemyPrefabs;
+    public Transform playerStartTransform;
+    public Transform enemyStartTransform;
 
     private IBattleState[] stateInterfaces;
     private int currentBattleStateIndex = 0;
+
+    //Characters
+    private Character player;
+    private Character currentEnemy;
 
     private static BattleManager singleton;
 
@@ -45,6 +56,8 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
+        SpawnCharacters();
+
         //start at first state and run
         currentBattleStateIndex = 0;
         Timing.RunCoroutine(GetCurrentBattleState().EnterState());
@@ -65,6 +78,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    #region BattleStates
     public void AdvanceBattleState()
     {
         Timing.RunCoroutine(GetCurrentBattleState().ExitState());
@@ -85,4 +99,37 @@ public class BattleManager : MonoBehaviour
             return null;
         }
     }
+    #endregion
+
+    #region Characters
+    private void SpawnCharacters()
+    {
+        //initialize characters
+        GameObject playerObj = Instantiate(playerPrefab);
+        playerObj.transform.position = playerStartTransform.position;
+        playerObj.transform.rotation = playerStartTransform.rotation;
+
+        player = playerObj.GetComponent<Character>();
+        if (player == null) { Debug.LogError("No player in Battle Manager!"); return; }
+
+        //spawn FIRST enemy
+        if (enemyPrefabs.Length == 0) { Debug.LogError("Enemy Prefabs Array is empty"); return; }
+        GameObject enemyObj = Instantiate(enemyPrefabs[0]);
+        enemyObj.transform.position = enemyStartTransform.position;
+        enemyObj.transform.rotation = enemyStartTransform.rotation;
+
+        currentEnemy = enemyObj.GetComponent<Character>();
+        if (currentEnemy == null) { Debug.LogError("No current enemy in Battle Manager!"); return; }
+    }
+
+    public Character GetPlayerCharacter()
+    {
+        return player;
+    }
+
+    public Character GetEnemyCharacter()
+    {
+        return currentEnemy;
+    }
+    #endregion
 }

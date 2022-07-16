@@ -1,21 +1,42 @@
 using MEC;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "Input Battle State", menuName = "BattleStates/InputState")]
+[CreateAssetMenu(fileName = "Player Roll Battle State", menuName = "BattleStates/PlayerRoll")]
 public class PlayerRollBattleState : DefaultBattleState
 {
     public float startDelay = 0.75f;
+
     public override IEnumerator<float> EnterState()
     {
         yield return Timing.WaitForSeconds(startDelay);
+        Debug.Log("IN player State");
+
+        if (battleMenuPrefab != null)
+        {
+            Debug.Log("Battle Menu Spawning");
+            //don't need to worry about position if it's overlay menu
+            GameObject menuObj = Instantiate(battleMenuPrefab);
+
+            battleMenu = menuObj.GetComponent<BattleMenu>();
+            if (battleMenu != null)
+            {
+                battleMenu.Initialize(this);
+            }
+        }
+        
     }
 
     public override IEnumerator<float> ExitState()
     {
         Debug.Log("Exiting BS: " + name);
+
+        if (battleMenu != null)
+        {
+            battleMenu.Close();
+        }
+
         yield return Timing.WaitForSeconds(0);
     }
 

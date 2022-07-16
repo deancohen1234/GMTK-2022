@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e419213cb79316419159c8a04986f0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 71645bfd27564f34897ca2704be94651, type: 3}
   m_Name: PlayerRoll
   m_EditorClassIdentifier: 
+  battleMenuPrefab: {fileID: 1344027321579077803, guid: 976199e6a754b78488f7f4fa123c5a0a, type: 3}
   startDelay: 0.75

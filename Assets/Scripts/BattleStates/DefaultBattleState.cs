@@ -6,6 +6,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BattleState", menuName = "BattleStates/BattleState")]
 public class DefaultBattleState : ScriptableObject, IBattleState
 {
+    [SerializeField]
+    protected GameObject battleMenuPrefab;
+
+    protected BattleMenu battleMenu;
+
     public virtual IEnumerator<float> EnterState()
     {
         Debug.LogError("BAD NO ENTER");
