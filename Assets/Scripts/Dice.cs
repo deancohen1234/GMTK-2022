@@ -115,12 +115,6 @@ public class Dice : MonoBehaviour
 
     private float GetAxisUpDot(DiceAxis diceAxis)
     {
-        //Vector3 axisVectorRight = new Vector3(diceAxis.axis.x * transform.right.x, diceAxis.axis.x * transform.right.y, diceAxis.axis.x * transform.right.z);
-        //Vector3 axisVectorUp = new Vector3(diceAxis.axis.y * transform.up.x, diceAxis.axis.y * transform.up.y, diceAxis.axis.y * transform.up.z);
-        //Vector3 axisVectorForward = new Vector3(diceAxis.axis.z * transform.forward.x, diceAxis.axis.z * transform.forward.y, diceAxis.axis.z * transform.forward.z);
-
-        //Vector3 axisVectorCombined = axisVectorRight + axisVectorUp + axisVectorForward;
-
         Vector3 worldAxisVector = CalculateWorldAxisVector(diceAxis);
 
         return Vector3.Dot(worldAxisVector, Vector3.up);

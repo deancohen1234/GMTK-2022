@@ -136,8 +136,6 @@ public class DiceRoller : MonoBehaviour
             dice.diceMeshTransform.rotation = dice.diceMeshTransform.rotation * adjustmentRot;
         }
 
-        //Debug.Log("desiredUpValue: " + endingFaceUp);
-
         int simulationIndex = 0;
         while (simulationIndex < dicePositions.Count)
         {
@@ -146,7 +144,6 @@ public class DiceRoller : MonoBehaviour
             diceRB.MoveRotation(diceRotations[simulationIndex]);
             simulationIndex++;
         }
-
 
     }
 }

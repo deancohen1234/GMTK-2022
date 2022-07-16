@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fd3b656e5f04549b303edb0785b562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diceMeshTransform: {fileID: 8916698646518035854}
   oneAxis:
     axis: {x: -1, y: 0, z: 0}
     value: 1
@@ -177,4 +178,3 @@ MonoBehaviour:
   sixAxis:
     axis: {x: 1, y: 0, z: 0}
     value: 6
-  diceMeshTransform: {fileID: 8916698646518035854}
