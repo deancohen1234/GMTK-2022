@@ -72,7 +72,6 @@ public class BattleManager : MonoBehaviour
         {
             stateInterfaces[i] = allBattleStates[i];
         }
-
     }
 
     private void Start()

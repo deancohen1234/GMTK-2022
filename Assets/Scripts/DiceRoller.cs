@@ -10,6 +10,7 @@ public class DiceRoller : MonoBehaviour
     public float diceMaxLaunchForce = 50f;
     public Vector2 diceMaxLaunchTorqueMinMax = new Vector2(10f, 20f);
     public Transform spawnPosition;
+    public AudioClip[] rollAudioClips;
 
     [Header("Debug")]
     public int desiredDiceRollOverride = 2;
@@ -21,6 +22,8 @@ public class DiceRoller : MonoBehaviour
     private List<Vector3> dicePositions;
     private List<Quaternion> diceRotations;
 
+    private AudioSource source;
+
     private const int DICEMAXSIMULATIONS = 1000;
 
     private void Start()
@@ -29,6 +32,8 @@ public class DiceRoller : MonoBehaviour
         diceRotations = new List<Quaternion>();
 
         instantiatedProbability = Instantiate(diceProbablity);
+
+        source = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -45,6 +50,17 @@ public class DiceRoller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             CameraShakeUtility.GetCameraShake().ShakeCamera(0.75f, 8f);
+        }
+    }
+
+    public void PlayRollSound()
+    {
+        AudioClip sound = rollAudioClips[Random.Range(0, rollAudioClips.Length)];
+        
+        if (source != null)
+        {
+            source.clip = sound;
+            source.Play();
         }
     }
 
@@ -94,6 +110,8 @@ public class DiceRoller : MonoBehaviour
 
     private void ThrowDice(int desiredValue)
     {
+        PlayRollSound();
+
         //kill old dice if it exists
         if (launchedDice != null)
         {

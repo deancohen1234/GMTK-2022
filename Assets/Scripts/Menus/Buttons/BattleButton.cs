@@ -6,7 +6,11 @@ using UnityEngine.UI;
 
 public class BattleButton : MonoBehaviour
 {
+    public AudioClip activateClip;
+
     protected BattleMenu parentMenu;
+
+    private AudioSource source;
 
     public virtual void Initialize(BattleMenu _parentMenu)
     {
@@ -30,6 +34,13 @@ public class BattleButton : MonoBehaviour
 
     public virtual void OnClick()
     {
-        
+        if (source == null)
+        {
+            source = GetComponent<AudioSource>();
+        }
+
+        source.clip = activateClip;
+        source.pitch = Random.Range(0.9f, 1.1f);
+        source.Play();
     }
 }
