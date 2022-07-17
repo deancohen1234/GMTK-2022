@@ -10,6 +10,10 @@ public class GameHUD : BattleMenu
     [Header("References")]
     public HealthBar playerHealthBar;
     public HealthBar enemyHealthBar;
+    public Transform curtainLeft;
+    public Transform curtainRight;
+    public Ease curtainEase = Ease.OutBack;
+    public float curtainMoveDuration = 1.0f;
 
     public override void Initialize(IBattleState _parentState)
     {
@@ -25,6 +29,18 @@ public class GameHUD : BattleMenu
 
         //recalcuate characters health
         UpdateCharactersHealth();
+    }
+
+    public void CloseCurtains()
+    {
+        curtainLeft.GetComponent<RectTransform>().DOAnchorPosX(0f, curtainMoveDuration).SetEase(curtainEase);
+        curtainRight .GetComponent<RectTransform>().DOAnchorPosX(0f, curtainMoveDuration).SetEase(curtainEase);
+    }
+
+    public void OpenCurtains()
+    {
+        curtainLeft.GetComponent<RectTransform>().DOAnchorPosX(-2000f, curtainMoveDuration).SetEase(curtainEase);
+        curtainRight.GetComponent<RectTransform>().DOAnchorPosX(2000f, curtainMoveDuration).SetEase(curtainEase);
     }
 
     //only update health if values have changed

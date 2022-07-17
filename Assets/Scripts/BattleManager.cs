@@ -93,6 +93,7 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         IBattleState currentBattleState = GetCurrentBattleState();
         if (currentBattleState != null)
         {
@@ -130,7 +131,15 @@ public class BattleManager : MonoBehaviour
     private IEnumerator<float> CycleNewEnemy()
     {
         //close curtain
-        yield return Timing.WaitForSeconds(1.0f);
+        GameHUD gameHUD = (GameHUD)hud;
+        if (gameHUD == null)
+        {
+            Debug.LogError("Game Hud null. Dangit");
+            yield break;
+        }
+
+        gameHUD.CloseCurtains();
+        yield return Timing.WaitForSeconds(1.5f);
 
         Debug.Log("Cycling new enemy");
 
@@ -147,10 +156,10 @@ public class BattleManager : MonoBehaviour
         currentEnemy = randomNewEnemy.GetComponent<Character>();
         if (currentEnemy == null) { Debug.LogError("No current enemy in Battle Manager!"); yield break; }
 
-        //open curtain
-        yield return Timing.WaitForSeconds(1.0f);
-
         AdvanceBattleState();
+
+        //open curtain
+        gameHUD.OpenCurtains();
     }
 
     private void EndGame()
