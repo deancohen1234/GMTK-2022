@@ -130,6 +130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceProbablity: {fileID: 11400000, guid: 0130a7a49d84f1c469ac501e597d4e84, type: 2}
   dicePrefab: {fileID: 7219585765425903518, guid: 6c7d7f92afab5f04d97e44a04985898c, type: 3}
-  diceMaxLaunchForce: 75
+  diceMaxLaunchForce: 150
   diceMaxLaunchTorque: 20
   desiredDiceRollOverride: 0

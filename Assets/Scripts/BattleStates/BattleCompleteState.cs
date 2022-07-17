@@ -10,12 +10,6 @@ public class BattleCompleteState : DefaultBattleState
     {
         yield return Timing.WaitForSeconds(startDelay);
 
-        //clear bets
-        BattleManager.GetBattleManager().SetBet(0);
-
-        BattleManager.GetBattleManager().UpdateHUDValues();
-
-        BattleManager.GetBattleManager().AdvanceBattleState();
-
+        BattleManager.GetBattleManager().EndBattle();
     }
 }

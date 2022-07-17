@@ -105,6 +105,42 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    #region BattleEnding
+    public void EndBattle()
+    {
+        //clear bets
+        SetBet(0);
+
+        UpdateHUDValues();
+
+        if (GetEnemyCharacter().IsDead())
+        {
+            CycleNewEnemy();
+        }
+        else
+        {
+            AdvanceBattleState();
+        }
+    }
+
+    private void CycleNewEnemy()
+    {
+        //close curtain
+
+        //destory current enemy
+        Destroy(currentEnemy);
+
+        //pick random new one
+        GameObject randomNewEnemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)]);
+        randomNewEnemy.transform.position = enemyStartTransform.position;
+        randomNewEnemy.transform.rotation = enemyStartTransform.rotation;
+        currentEnemy = randomNewEnemy.GetComponent<Character>();
+        if (currentEnemy == null) { Debug.LogError("No current enemy in Battle Manager!"); return; }
+
+        //open curtain
+    }
+    #endregion
+
     #region BattleStates
     public void AdvanceBattleState()
     {

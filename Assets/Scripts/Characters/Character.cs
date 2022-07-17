@@ -74,6 +74,11 @@ public class Character : MonoBehaviour
     {
         return (float)health / (float)startingHealth;
     }
+
+    public bool IsDead()
+    {
+        return health <= 0;
+    }
     #endregion
 
     public int Roll()

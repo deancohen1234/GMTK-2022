@@ -8,7 +8,7 @@ public class DiceRoller : MonoBehaviour
 
     public GameObject dicePrefab;
     public float diceMaxLaunchForce = 50f;
-    public float diceMaxLaunchTorque = 50f;
+    public Vector2 diceMaxLaunchTorqueMinMax = new Vector2(10f, 20f);
 
     [Header("Debug")]
     public int desiredDiceRollOverride = 2;
@@ -88,10 +88,10 @@ public class DiceRoller : MonoBehaviour
         //    Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque),
         //    Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque)), ForceMode.VelocityChange);
 
-        diceRB.maxAngularVelocity = diceMaxLaunchTorque * 2f;
-        diceRB.angularVelocity = new Vector3(Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque),
-            Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque),
-            Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque));
+        diceRB.maxAngularVelocity = diceMaxLaunchTorqueMinMax.y * 2f;
+        diceRB.angularVelocity = new Vector3(Random.Range(diceMaxLaunchTorqueMinMax.x, diceMaxLaunchTorqueMinMax.y),
+            Random.Range(diceMaxLaunchTorqueMinMax.x, diceMaxLaunchTorqueMinMax.y),
+            Random.Range(diceMaxLaunchTorqueMinMax.x, diceMaxLaunchTorqueMinMax.y));
 
         if (desiredDiceRollOverride > 0)
         {
