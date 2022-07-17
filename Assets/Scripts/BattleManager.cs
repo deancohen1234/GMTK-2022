@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using MEC;
 
 public class BattleManager : MonoBehaviour
@@ -24,6 +23,8 @@ public class BattleManager : MonoBehaviour
     [Header("UI")]
     //shows player health, enemy health, points, bet odds
     public GameObject mainHUDPrefab;
+    public GameObject staringMenuPrefab;
+    public GameObject deathMenuPrefab;
 
     [Header("Betting")]
     public int maxBet = 5;
@@ -36,7 +37,9 @@ public class BattleManager : MonoBehaviour
     private Character player;
     private Character currentEnemy;
 
-    private BattleMenu hud;
+    private GameHUD hud;
+    private BattleMenu startMenu;
+    private BattleMenu deathMenu;
 
     //-1 = low +1 = high
     private bool isPlayerGuessingHigh = false;
@@ -76,7 +79,7 @@ public class BattleManager : MonoBehaviour
 
         //spawn in HUD
         GameObject hudObj = Instantiate(mainHUDPrefab);
-        hud = hudObj.GetComponent<BattleMenu>();
+        hud = hudObj.GetComponent<GameHUD>();
         if (hud == null)
         {
             Debug.LogError("HUD is null!");
@@ -85,9 +88,10 @@ public class BattleManager : MonoBehaviour
 
         hud.Initialize(null);
 
-        //start at first state and run
-        currentBattleStateIndex = 0;
-        Timing.RunCoroutine(GetCurrentBattleState().EnterState());
+        //spawn starting menu
+        GameObject startingMenuObj = Instantiate(staringMenuPrefab);
+        startMenu = startingMenuObj.GetComponent<BattleMenu>();
+        startMenu.Initialize(null);
     }
 
     // Update is called once per frame
@@ -105,6 +109,20 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
+
+    #region Game Functions
+    public void StartGame()
+    {
+        //close start menu and start game proper
+        startMenu.Close();
+
+        hud.OpenCurtains();
+
+        //start at first state and run
+        currentBattleStateIndex = 0;
+        Timing.RunCoroutine(GetCurrentBattleState().EnterState());
+    }
+    #endregion
 
     #region BattleEnding
     public void EndBattle()
@@ -130,18 +148,8 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator<float> CycleNewEnemy()
     {
-        //close curtain
-        GameHUD gameHUD = (GameHUD)hud;
-        if (gameHUD == null)
-        {
-            Debug.LogError("Game Hud null. Dangit");
-            yield break;
-        }
-
-        gameHUD.CloseCurtains();
+        hud.CloseCurtains();
         yield return Timing.WaitForSeconds(1.5f);
-
-        Debug.Log("Cycling new enemy");
 
         //clear dice
         currentEnemy.ClearDice();
@@ -159,13 +167,17 @@ public class BattleManager : MonoBehaviour
         AdvanceBattleState();
 
         //open curtain
-        gameHUD.OpenCurtains();
+        hud.OpenCurtains();
     }
 
     private void EndGame()
     {
-        Debug.Log("Game Over!");
-        SceneManager.LoadScene(0);
+        hud.CloseCurtains();
+
+        //spawn death menu
+        GameObject deathMenuObj = Instantiate(deathMenuPrefab);
+        deathMenu = deathMenuObj.GetComponent<BattleMenu>();
+        deathMenu.Initialize(null);
     }
     #endregion
 

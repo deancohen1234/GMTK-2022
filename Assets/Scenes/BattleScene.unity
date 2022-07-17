@@ -2288,6 +2288,8 @@ MonoBehaviour:
   playerDiceSpawnTransform: {fileID: 1691000920}
   enemyDiceSpawnTransform: {fileID: 465921708}
   mainHUDPrefab: {fileID: 2699829616060401653, guid: 2d30ac61990a1b44586540076520575a, type: 3}
+  staringMenuPrefab: {fileID: 1344027321579077803, guid: 1c394dd8e6b9406429d1130387a47e5f, type: 3}
+  deathMenuPrefab: {fileID: 1344027321579077803, guid: 95a1028ead39a8841911c622b467d47f, type: 3}
   maxBet: 5
   betMultiplier: 0.4
 --- !u!4 &1916696395
