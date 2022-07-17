@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586169177b440bf41a8c5ce8f497d8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Dagron
   spriteRenderer: {fileID: 187844017090885221}
   idleSprite: {fileID: -370652556, guid: a0f569420816d9944a98159c0e9e23bd, type: 3}
   attackSprite: {fileID: 1746020616, guid: a0f569420816d9944a98159c0e9e23bd, type: 3}

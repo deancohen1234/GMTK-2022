@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586169177b440bf41a8c5ce8f497d8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Thurboldt
   spriteRenderer: {fileID: 187844017090885221}
   idleSprite: {fileID: 1803648679, guid: d92f5c824090cd74398692ab1ffc01a3, type: 3}
   attackSprite: {fileID: -1367434987, guid: d92f5c824090cd74398692ab1ffc01a3, type: 3}

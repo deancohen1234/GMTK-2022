@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586169177b440bf41a8c5ce8f497d8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Barvin
   spriteRenderer: {fileID: 187844017090885221}
   idleSprite: {fileID: -238414919, guid: 2e9433a05309d994d8d6b316b4c81c66, type: 3}
   attackSprite: {fileID: -500529470, guid: 2e9433a05309d994d8d6b316b4c81c66, type: 3}

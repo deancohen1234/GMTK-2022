@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586169177b440bf41a8c5ce8f497d8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Mild Song
   spriteRenderer: {fileID: 187844017090885221}
   idleSprite: {fileID: 1838513991, guid: 03567431f9600ec44b035f5a43c36dba, type: 3}
   attackSprite: {fileID: 310065859, guid: 03567431f9600ec44b035f5a43c36dba, type: 3}

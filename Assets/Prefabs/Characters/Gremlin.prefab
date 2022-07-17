@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586169177b440bf41a8c5ce8f497d8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: John Gremlin
   spriteRenderer: {fileID: 187844017090885221}
   idleSprite: {fileID: 955225034, guid: 666369cd0b1c2414ca3f2212e7dd2117, type: 3}
   attackSprite: {fileID: -731148802, guid: 666369cd0b1c2414ca3f2212e7dd2117, type: 3}

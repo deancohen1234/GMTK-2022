@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586169177b440bf41a8c5ce8f497d8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Chesterfield
   spriteRenderer: {fileID: 187844017090885221}
   idleSprite: {fileID: -1600258934, guid: e377965c99dff0940bf06d9f8ca56c9d, type: 3}
   attackSprite: {fileID: -1284876365, guid: e377965c99dff0940bf06d9f8ca56c9d, type: 3}
