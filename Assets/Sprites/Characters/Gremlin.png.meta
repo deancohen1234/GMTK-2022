@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3ca4fb6e96b25f24ba5ceb379ade0d6a
+guid: 666369cd0b1c2414ca3f2212e7dd2117
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,18 +101,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -128,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Yourself_Player_0
+      name: Gremlin_0
       rect:
         serializedVersion: 2
         x: 0
@@ -142,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a218fd8fe261f54c9443f3bedcabc4e
-      internalID: 1669658713
+      spriteID: 1d84eea0adcca974a91a1104741e7991
+      internalID: 955225034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yourself_Player_1
+      name: Gremlin_1
       rect:
         serializedVersion: 2
         x: 256
@@ -163,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8bc2ef9c72871d4088f7e69c9b8523d
-      internalID: -1779344767
+      spriteID: b85bd19bb52ef3141a4a1f20f5fd2c41
+      internalID: -731148802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yourself_Player_2
+      name: Gremlin_2
       rect:
         serializedVersion: 2
         x: 512
@@ -184,8 +172,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8eacbd8ede577434f901ea5b92490fca
-      internalID: -464032049
+      spriteID: 4a66f327b60f0b249b547698ee344649
+      internalID: -975539092
       vertices: []
       indices: 
       edges: []
@@ -193,7 +181,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 2387bafb01da818489b61f69e157e31b
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -201,9 +189,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Yourself_Player_2: -464032049
-      Yourself_Player_0: 1669658713
-      Yourself_Player_1: -1779344767
+      Gremlin_1: -731148802
+      Gremlin_2: -975539092
+      Gremlin_0: 955225034
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

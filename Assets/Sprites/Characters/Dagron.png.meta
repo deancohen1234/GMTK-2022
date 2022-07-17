@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3ca4fb6e96b25f24ba5ceb379ade0d6a
+guid: a0f569420816d9944a98159c0e9e23bd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,18 +101,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -128,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Yourself_Player_0
+      name: Dagron_0
       rect:
         serializedVersion: 2
         x: 0
@@ -142,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a218fd8fe261f54c9443f3bedcabc4e
-      internalID: 1669658713
+      spriteID: 15b7ba2951134f74e8711886a50d1425
+      internalID: -370652556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yourself_Player_1
+      name: Dagron_1
       rect:
         serializedVersion: 2
         x: 256
@@ -163,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8bc2ef9c72871d4088f7e69c9b8523d
-      internalID: -1779344767
+      spriteID: fab9eb700a035f246b6e5dde5170033d
+      internalID: 1746020616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yourself_Player_2
+      name: Dagron_2
       rect:
         serializedVersion: 2
         x: 512
@@ -184,8 +172,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8eacbd8ede577434f901ea5b92490fca
-      internalID: -464032049
+      spriteID: 59d65d58969185a43979c8e36d080e92
+      internalID: -535556263
       vertices: []
       indices: 
       edges: []
@@ -193,7 +181,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 2387bafb01da818489b61f69e157e31b
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -201,9 +189,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Yourself_Player_2: -464032049
-      Yourself_Player_0: 1669658713
-      Yourself_Player_1: -1779344767
+      Dagron_1: 1746020616
+      Dagron_2: -535556263
+      Dagron_0: -370652556
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
