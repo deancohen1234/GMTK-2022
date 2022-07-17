@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -370652556, guid: a0f569420816d9944a98159c0e9e23bd, type: 3}
+  m_Sprite: {fileID: -238414919, guid: 2e9433a05309d994d8d6b316b4c81c66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2116618508485913328}
   - component: {fileID: 2116618508485913331}
   m_Layer: 0
-  m_Name: Dagron
+  m_Name: Enemy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,11 +131,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 187844017090885221}
-  idleSprite: {fileID: -370652556, guid: a0f569420816d9944a98159c0e9e23bd, type: 3}
-  attackSprite: {fileID: 1746020616, guid: a0f569420816d9944a98159c0e9e23bd, type: 3}
-  hurtSprite: {fileID: -535556263, guid: a0f569420816d9944a98159c0e9e23bd, type: 3}
+  idleSprite: {fileID: -238414919, guid: 2e9433a05309d994d8d6b316b4c81c66, type: 3}
+  attackSprite: {fileID: -500529470, guid: 2e9433a05309d994d8d6b316b4c81c66, type: 3}
+  hurtSprite: {fileID: 1878692269, guid: 2e9433a05309d994d8d6b316b4c81c66, type: 3}
   startingHealth: 10
-  mass: 0.65
+  mass: 0
   isPlayer: 0
 --- !u!114 &2116618508485913331
 MonoBehaviour:

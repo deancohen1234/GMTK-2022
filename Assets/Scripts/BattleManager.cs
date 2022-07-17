@@ -162,10 +162,12 @@ public class BattleManager : MonoBehaviour
         currentEnemy.ClearDice();
 
         //destory current enemy
-        Destroy(currentEnemy);
+        Destroy(currentEnemy.gameObject);
+        currentEnemy = null;
 
         //pick random new one
-        GameObject randomNewEnemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)]);
+        int randomIndex = Random.Range(0, enemyPrefabs.Length);
+        GameObject randomNewEnemy = Instantiate(enemyPrefabs[randomIndex]);
         randomNewEnemy.transform.position = enemyStartTransform.position;
         randomNewEnemy.transform.rotation = enemyStartTransform.rotation;
         currentEnemy = randomNewEnemy.GetComponent<Character>();
@@ -230,7 +232,9 @@ public class BattleManager : MonoBehaviour
 
         //spawn FIRST enemy
         if (enemyPrefabs.Length == 0) { Debug.LogError("Enemy Prefabs Array is empty"); return; }
-        GameObject enemyObj = Instantiate(enemyPrefabs[0]);
+
+        int randomIndex = Random.Range(0, enemyPrefabs.Length);
+        GameObject enemyObj = Instantiate(enemyPrefabs[randomIndex]);
         enemyObj.transform.position = enemyStartTransform.position;
         enemyObj.transform.rotation = enemyStartTransform.rotation;
 
