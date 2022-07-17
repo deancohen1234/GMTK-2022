@@ -78,6 +78,9 @@ public class OutcomeMenu : BattleMenu
 
     private void PlayerWin(int rollDif)
     {
+        BattleManager.GetBattleManager().GetPlayerCharacter().SetAnimationState(AnimationState.Attack);
+        BattleManager.GetBattleManager().GetEnemyCharacter().SetAnimationState(AnimationState.Hurt);
+
         int damage = Mathf.RoundToInt(rollDif * BattleManager.GetBattleManager().GetBetDamageMultiplier());
         int enemyHealthRemaining = BattleManager.GetBattleManager().GetEnemyCharacter().Hurt(damage);
 
@@ -92,6 +95,9 @@ public class OutcomeMenu : BattleMenu
 
     private void EnemyWin(int rollDif)
     {
+        BattleManager.GetBattleManager().GetPlayerCharacter().SetAnimationState(AnimationState.Hurt);
+        BattleManager.GetBattleManager().GetEnemyCharacter().SetAnimationState(AnimationState.Attack);
+
         int damage = Mathf.RoundToInt(rollDif * BattleManager.GetBattleManager().GetBetDamageMultiplier());
         BattleManager.GetBattleManager().GetPlayerCharacter().Hurt(damage);
 
@@ -101,6 +107,10 @@ public class OutcomeMenu : BattleMenu
     private IEnumerator<float> DelayEndOfState()
     {
         yield return Timing.WaitForSeconds(outcomePostDelay);
+
+        //reset animations
+        BattleManager.GetBattleManager().GetPlayerCharacter().SetAnimationState(AnimationState.Idle);
+        BattleManager.GetBattleManager().GetEnemyCharacter().SetAnimationState(AnimationState.Idle);
 
         BattleManager.GetBattleManager().AdvanceBattleState();
     }

@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeightClass { Light = 0, Medium = 1, Heavy = 2 }
+public enum AnimationState { Idle = 0, Attack = 1, Hurt = 2 }
 
 public class Character : MonoBehaviour
 {
-    public WeightClass weightClass;
+    [Header("Sprites")]
+    public SpriteRenderer spriteRenderer;
+    public Sprite idleSprite;
+    public Sprite attackSprite;
+    public Sprite hurtSprite;
+
     public int startingHealth;
     [Range(-1f, 1f)]
     public float mass = 0;
@@ -75,12 +80,18 @@ public class Character : MonoBehaviour
         return (float)health / (float)startingHealth;
     }
 
+    public int GetHealth()
+    {
+        return health;
+    }
+
     public bool IsDead()
     {
         return health <= 0;
     }
     #endregion
 
+    #region Rolling and Dice
     public int Roll()
     {
         //can take into account weight class later
@@ -98,11 +109,25 @@ public class Character : MonoBehaviour
     {
         diceRoller.ClearDice();
     }
+    #endregion
 
-    public int GetHealth()
+    #region Animation
+    public void SetAnimationState(AnimationState state)
     {
-        return health;
-    }
+        switch (state)
+        {
+            case AnimationState.Idle:
+                spriteRenderer.sprite = idleSprite;
+                break;
+            case AnimationState.Attack:
+                spriteRenderer.sprite = attackSprite;
+                break;
+            case AnimationState.Hurt:
+                spriteRenderer.sprite = hurtSprite;
+                break;
 
+        }
+    }
+    #endregion
 
 }
