@@ -12,6 +12,6 @@ public class DeathBattleMenu : BattleMenu
         base.Initialize(_parentState);
 
         //display num kills
-        endText.text = numKillsPrefix + BattleManager.GetBattleManager().GetNumKills() + "</color>";
+        endText.text = numKillsPrefix + BattleManager.GetBattleManager().GetNumKills();
     }
 }

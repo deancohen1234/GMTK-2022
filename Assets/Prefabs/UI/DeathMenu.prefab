@@ -256,7 +256,7 @@ MonoBehaviour:
   - {fileID: 8205669798268631750}
   - {fileID: 23417012504814175}
   endText: {fileID: 8650545203051020892}
-  numKillsPrefix: 'Enemies Out-Diced: <color=green>'
+  numKillsPrefix: 'Enemies Out-Diced: '
 --- !u!1 &2867919488261614460
 GameObject:
   m_ObjectHideFlags: 0

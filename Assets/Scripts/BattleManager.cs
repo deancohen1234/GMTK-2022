@@ -162,6 +162,8 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator<float> CycleNewEnemy()
     {
+        numKills++;
+
         hud.CloseCurtains();
         yield return Timing.WaitForSeconds(1.5f);
 
