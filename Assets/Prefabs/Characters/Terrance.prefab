@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -238414919, guid: 2e9433a05309d994d8d6b316b4c81c66, type: 3}
+  m_Sprite: {fileID: -761885921, guid: 42c4ea97ee4dea6488c2554e85aa75d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2116618508485913328}
   - component: {fileID: 2116618508485913331}
   m_Layer: 0
-  m_Name: Enemy 1
+  m_Name: Terrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,13 +130,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586169177b440bf41a8c5ce8f497d8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: 
+  characterName: Terrance
   spriteRenderer: {fileID: 187844017090885221}
-  idleSprite: {fileID: -238414919, guid: 2e9433a05309d994d8d6b316b4c81c66, type: 3}
-  attackSprite: {fileID: -500529470, guid: 2e9433a05309d994d8d6b316b4c81c66, type: 3}
-  hurtSprite: {fileID: 1878692269, guid: 2e9433a05309d994d8d6b316b4c81c66, type: 3}
-  startingHealth: 10
-  mass: 0
+  idleSprite: {fileID: -761885921, guid: 42c4ea97ee4dea6488c2554e85aa75d3, type: 3}
+  attackSprite: {fileID: -425258568, guid: 42c4ea97ee4dea6488c2554e85aa75d3, type: 3}
+  hurtSprite: {fileID: -1825156822, guid: 42c4ea97ee4dea6488c2554e85aa75d3, type: 3}
+  startingHealth: 14
+  mass: -0.16
   isPlayer: 0
 --- !u!114 &2116618508485913331
 MonoBehaviour:

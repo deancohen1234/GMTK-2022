@@ -2233,6 +2233,7 @@ MonoBehaviour:
   - {fileID: 2116618508485913334, guid: c6bae74bfbd3e514d9272f706066bd40, type: 3}
   - {fileID: 2116618508485913334, guid: 77ff34fe331b6134b9fdcac3685552c7, type: 3}
   - {fileID: 2116618508485913334, guid: 4392ee9bd2b48d049ad0fa480c0d1706, type: 3}
+  - {fileID: 2116618508485913334, guid: 36b96ae940b97c24a9c6da6027d1e391, type: 3}
   playerStartTransform: {fileID: 1621796620}
   enemyStartTransform: {fileID: 237821861}
   playerDiceSpawnTransform: {fileID: 1691000920}
