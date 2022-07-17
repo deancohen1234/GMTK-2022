@@ -7,16 +7,15 @@ public class DiceRoller : MonoBehaviour
     public DiceProbablity diceProbablity;
 
     public GameObject dicePrefab;
-    public Transform diceSpawnTransform;
     public float diceMaxLaunchForce = 50f;
     public float diceMaxLaunchTorque = 50f;
-    public int desiredDiceRoll = 2;
 
-    public float characterMassOverride = 0;
-    public int testCount = 500;
+    [Header("Debug")]
+    public int desiredDiceRollOverride = 2;
 
     private DiceProbablity instantiatedProbability;
     private GameObject launchedDice;
+    private Transform diceSpawnTransform;
 
     private List<Vector3> dicePositions;
     private List<Quaternion> diceRotations;
@@ -31,40 +30,42 @@ public class DiceRoller : MonoBehaviour
         instantiatedProbability = Instantiate(diceProbablity);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ThrowDice();
-        }
+    //private void TestProbability()
+    //{
+    //    List<int> results = new List<int>();
+    //    for (int i = 0; i < testCount; i++)
+    //    {
+    //        int diceResult = instantiatedProbability.PickWeightedDiceRoll(characterMassOverride);
+    //        results.Add(diceResult);
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            TestProbability();
-        }
+    //    float onePercent = ((float)results.FindAll(x => x == 1).Count / testCount);
+    //    float twoPercent = ((float)results.FindAll(x => x == 2).Count / testCount);
+    //    float threePercent = ((float)results.FindAll(x => x == 3).Count / testCount);
+    //    float fourPercent = ((float)results.FindAll(x => x == 4).Count / testCount);
+    //    float fivePercent = ((float)results.FindAll(x => x == 5).Count / testCount);
+    //    float sixPercent = ((float)results.FindAll(x => x == 6).Count / testCount);
+
+    //    Debug.Log($"One: {onePercent}\nTwo: {twoPercent}\nThree: {threePercent}\nFour: {fourPercent}\nFive: {fivePercent}\nSix: {sixPercent}\n");
+    //}
+
+    public void SetSpawnTransform(Transform spawnTransform)
+    {
+        diceSpawnTransform = spawnTransform;
     }
 
-    private void TestProbability()
+    public int RollWeightedDice(float characterWeight)
     {
-        List<int> results = new List<int>();
-        for (int i = 0; i < testCount; i++)
-        {
-            int diceResult = instantiatedProbability.PickWeightedDiceRoll(characterMassOverride);
-            results.Add(diceResult);
-        }
+        //get weighted result from character
+        int diceResult = instantiatedProbability.PickWeightedDiceRoll(characterWeight);
 
-        float onePercent = ((float)results.FindAll(x => x == 1).Count / testCount);
-        float twoPercent = ((float)results.FindAll(x => x == 2).Count / testCount);
-        float threePercent = ((float)results.FindAll(x => x == 3).Count / testCount);
-        float fourPercent = ((float)results.FindAll(x => x == 4).Count / testCount);
-        float fivePercent = ((float)results.FindAll(x => x == 5).Count / testCount);
-        float sixPercent = ((float)results.FindAll(x => x == 6).Count / testCount);
+        //roll physical dice to match result
+        ThrowDice(diceResult);
 
-        Debug.Log($"One: {onePercent}\nTwo: {twoPercent}\nThree: {threePercent}\nFour: {fourPercent}\nFive: {fivePercent}\nSix: {sixPercent}\n");
+        return diceResult;
     }
 
-    private void ThrowDice()
+    private void ThrowDice(int desiredValue)
     {
         //kill old dice if it exists
         if (launchedDice != null)
@@ -92,7 +93,12 @@ public class DiceRoller : MonoBehaviour
             Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque),
             Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque));
 
-        SimulateDiceRoll(diceRB, desiredDiceRoll);
+        if (desiredDiceRollOverride > 0)
+        {
+            desiredValue = desiredDiceRollOverride;
+        }
+
+        SimulateDiceRoll(diceRB, desiredValue);
 
     }
 

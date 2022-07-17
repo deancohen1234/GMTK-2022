@@ -18,6 +18,8 @@ public class BattleManager : MonoBehaviour
     public GameObject[] enemyPrefabs;
     public Transform playerStartTransform;
     public Transform enemyStartTransform;
+    public Transform playerDiceSpawnTransform;
+    public Transform enemyDiceSpawnTransform;
 
     [Header("UI")]
     //shows player health, enemy health, points, bet odds

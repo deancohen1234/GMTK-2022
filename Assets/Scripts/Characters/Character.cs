@@ -8,6 +8,9 @@ public class Character : MonoBehaviour
 {
     public WeightClass weightClass;
     public int startingHealth;
+    [Range(-1f, 1f)]
+    public float mass = 0;
+    public bool isPlayer = false;
 
     protected DiceRoller diceRoller;
 
@@ -19,6 +22,21 @@ public class Character : MonoBehaviour
         health = startingHealth;
 
         diceRoller = GetComponent<DiceRoller>();
+    }
+
+    private void Start()
+    {
+        if (diceRoller)
+        {
+            if (isPlayer)
+            {
+                diceRoller.SetSpawnTransform(BattleManager.GetBattleManager().playerDiceSpawnTransform);
+            }
+            else
+            {
+                diceRoller.SetSpawnTransform(BattleManager.GetBattleManager().enemyDiceSpawnTransform);
+            }
+        }
     }
 
     #region Health
@@ -61,10 +79,7 @@ public class Character : MonoBehaviour
     public int Roll()
     {
         //can take into account weight class later
-        //return diceRoller.RollWeightedDice();
-
-        //get a random number between 1-6
-        currentRoll = Random.Range(1, 7);
+        currentRoll = diceRoller.RollWeightedDice(mass);
         return currentRoll;
     }
 
