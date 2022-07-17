@@ -41,6 +41,8 @@ public class BattleManager : MonoBehaviour
     private BattleMenu startMenu;
     private BattleMenu deathMenu;
 
+    private int numKills = 0;
+
     //-1 = low +1 = high
     private bool isPlayerGuessingHigh = false;
     private int playerBet = 0;
@@ -121,6 +123,11 @@ public class BattleManager : MonoBehaviour
         //start at first state and run
         currentBattleStateIndex = 0;
         Timing.RunCoroutine(GetCurrentBattleState().EnterState());
+    }
+
+    public int GetNumKills()
+    {
+        return numKills;
     }
     #endregion
 
