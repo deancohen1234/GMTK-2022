@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Image healthImage;
-    public TextMeshProUGUI healthText;
     public float healthChangeDuration = 0.6f;
     public Ease healthChangeEase = Ease.OutBounce;
 
@@ -19,11 +18,6 @@ public class HealthBar : MonoBehaviour
     {
         startingHealth = _startingHealth;
         currentHealthVal = startingHealth;
-
-        if (healthText)
-        {
-            healthText.text = currentHealthVal.ToString();
-        }
     }
 
     public void UpdateHealthValue(int value)
@@ -36,9 +30,6 @@ public class HealthBar : MonoBehaviour
             //update bar
             float percentage = (float)currentHealthVal / (float)startingHealth;
             healthImage.DOFillAmount(percentage, healthChangeDuration).SetEase(healthChangeEase);
-
-            //update text
-            healthText.text = currentHealthVal.ToString();
         }
     }
 }

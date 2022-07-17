@@ -132,4 +132,5 @@ MonoBehaviour:
   dicePrefab: {fileID: 7219585765425903518, guid: 6c7d7f92afab5f04d97e44a04985898c, type: 3}
   diceMaxLaunchForce: 80
   diceMaxLaunchTorqueMinMax: {x: 5, y: 10}
+  spawnPosition: {fileID: 0}
   desiredDiceRollOverride: 0

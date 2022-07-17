@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,6 @@ public class GameHUD : BattleMenu
     [Header("References")]
     public HealthBar playerHealthBar;
     public HealthBar enemyHealthBar;
-    public BetGauge gambitGauge;
 
     public override void Initialize(IBattleState _parentState)
     {
@@ -25,9 +25,6 @@ public class GameHUD : BattleMenu
 
         //recalcuate characters health
         UpdateCharactersHealth();
-
-        //update the current bet
-        gambitGauge.SetBetAmount(BattleManager.GetBattleManager().GetBet());
     }
 
     //only update health if values have changed

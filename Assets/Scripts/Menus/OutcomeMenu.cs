@@ -109,7 +109,7 @@ public class OutcomeMenu : BattleMenu
     {
         if (playerHighLowGuess)
         {
-            if (playerRoll > enemyRoll)
+            if (playerRoll < enemyRoll)
             {
                 return true;
             }
@@ -121,7 +121,7 @@ public class OutcomeMenu : BattleMenu
         }
         else
         {
-            if (playerRoll < enemyRoll)
+            if (playerRoll > enemyRoll)
             {
                 return true;
             }
