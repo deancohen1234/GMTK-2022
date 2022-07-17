@@ -17,6 +17,10 @@ public class OutcomeMenu : BattleMenu
     public float tweenDuration = 0.9f;
     public Ease tweenEase = Ease.OutBack;
 
+    [Header("Camera Shake")]
+    public float duration = 0.75f;
+    public float intensity = 4f;
+
     [Header("Timing")]
     public float outcomePreDelay = 0.75f;
     public float outcomePostDelay = 2.25f;
@@ -81,6 +85,9 @@ public class OutcomeMenu : BattleMenu
         BattleManager.GetBattleManager().GetPlayerCharacter().SetAnimationState(AnimationState.Attack);
         BattleManager.GetBattleManager().GetEnemyCharacter().SetAnimationState(AnimationState.Hurt);
 
+        //shake camera
+        CameraShakeUtility.GetCameraShake().ShakeCamera(duration, intensity + rollDif);
+
         int damage = Mathf.RoundToInt(rollDif * BattleManager.GetBattleManager().GetBetDamageMultiplier());
         int enemyHealthRemaining = BattleManager.GetBattleManager().GetEnemyCharacter().Hurt(damage);
 
@@ -97,6 +104,9 @@ public class OutcomeMenu : BattleMenu
     {
         BattleManager.GetBattleManager().GetPlayerCharacter().SetAnimationState(AnimationState.Hurt);
         BattleManager.GetBattleManager().GetEnemyCharacter().SetAnimationState(AnimationState.Attack);
+
+        //shake camera
+        CameraShakeUtility.GetCameraShake().ShakeCamera(duration, intensity + rollDif);
 
         int damage = Mathf.RoundToInt(rollDif * BattleManager.GetBattleManager().GetBetDamageMultiplier());
         BattleManager.GetBattleManager().GetPlayerCharacter().Hurt(damage);

@@ -646,5 +646,7 @@ MonoBehaviour:
   playerTextEnd: {fileID: 1849560475137076028}
   tweenDuration: 0.6
   tweenEase: 27
+  duration: 0.75
+  intensity: 1
   outcomePreDelay: 0.75
   outcomePostDelay: 2.25

@@ -42,6 +42,10 @@ public class DiceRoller : MonoBehaviour
 
             ThrowDice(desiredDiceRollOverride);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            CameraShakeUtility.GetCameraShake().ShakeCamera(0.75f, 8f);
+        }
     }
 
     //private void TestProbability()
