@@ -97,6 +97,10 @@ public class BattleManager : MonoBehaviour
         GameObject startingMenuObj = Instantiate(staringMenuPrefab);
         startMenu = startingMenuObj.GetComponent<BattleMenu>();
         startMenu.Initialize(null);
+
+        //update background to random mat
+        Material randomMat = backgroundMaterials[Random.Range(0, backgroundMaterials.Length)];
+        battleBackgroundRenderer.material = randomMat;
     }
 
     // Update is called once per frame
