@@ -10,6 +10,7 @@ public class GameHUD : BattleMenu
     [Header("References")]
     public HealthBar playerHealthBar;
     public HealthBar enemyHealthBar;
+    public Image enemyWeightBar;
     public Transform curtainLeft;
     public Transform curtainRight;
     public Ease curtainEase = Ease.OutBack;
@@ -21,6 +22,11 @@ public class GameHUD : BattleMenu
 
         playerHealthBar.Initialize(BattleManager.GetBattleManager().GetPlayerCharacter().GetHealth());
         enemyHealthBar.Initialize(BattleManager.GetBattleManager().GetEnemyCharacter().GetHealth());
+
+        //show weight in weight bar
+        float fillPercent = (BattleManager.GetBattleManager().GetEnemyCharacter().mass + 1f) * 0.5f;
+        enemyWeightBar.fillAmount = fillPercent;
+
     }
 
     public override void UpdateMenu()
@@ -48,6 +54,10 @@ public class GameHUD : BattleMenu
     {
         playerHealthBar.UpdateHealthValue(BattleManager.GetBattleManager().GetPlayerCharacter().GetHealth());
         enemyHealthBar.UpdateHealthValue(BattleManager.GetBattleManager().GetEnemyCharacter().GetHealth());
+
+        //show weight in weight bar
+        float fillPercent = (BattleManager.GetBattleManager().GetEnemyCharacter().mass + 1f) * 0.5f;
+        enemyWeightBar.fillAmount = fillPercent;
     }
 
 }
