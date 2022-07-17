@@ -899,6 +899,7 @@ MonoBehaviour:
   enemyWeightBar: {fileID: 8547467049526317743}
   curtainLeft: {fileID: 7969555713486589022}
   curtainRight: {fileID: 5732074157988942566}
+  enemyName: {fileID: 390912254901741175}
   curtainEase: 27
   curtainMoveDuration: 1
 --- !u!1 &3515936478117385515
