@@ -20,7 +20,10 @@ public class HealthBar : MonoBehaviour
         startingHealth = _startingHealth;
         currentHealthVal = startingHealth;
 
-        healthText.text = currentHealthVal.ToString();
+        if (healthText)
+        {
+            healthText.text = currentHealthVal.ToString();
+        }
     }
 
     public void UpdateHealthValue(int value)
