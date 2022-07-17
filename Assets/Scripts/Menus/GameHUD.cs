@@ -9,7 +9,7 @@ public class GameHUD : BattleMenu
     [Header("References")]
     public HealthBar playerHealthBar;
     public HealthBar enemyHealthBar;
-    public Image gambitGauge;
+    public BetGauge gambitGauge;
 
     public override void Initialize(IBattleState _parentState)
     {
@@ -25,6 +25,9 @@ public class GameHUD : BattleMenu
 
         //recalcuate characters health
         UpdateCharactersHealth();
+
+        //update the current bet
+        gambitGauge.SetBetAmount(BattleManager.GetBattleManager().GetBet());
     }
 
     //only update health if values have changed
@@ -33,4 +36,5 @@ public class GameHUD : BattleMenu
         playerHealthBar.UpdateHealthValue(BattleManager.GetBattleManager().GetPlayerCharacter().GetHealth());
         enemyHealthBar.UpdateHealthValue(BattleManager.GetBattleManager().GetEnemyCharacter().GetHealth());
     }
+
 }

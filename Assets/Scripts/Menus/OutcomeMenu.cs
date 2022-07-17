@@ -53,8 +53,21 @@ public class OutcomeMenu : BattleMenu
         }
         else if (rollDif == 0)
         {
-            //enemy wins but deal a small amount of damage
-            EnemyWin(1);
+            //if player rolled 1 then player wins in tie,
+            if (playerRoll == 1)
+            {
+                PlayerWin(1);
+            }
+            //if enemy rolled 6 then enemy wins in tie
+            else if (enemyRoll == 6)
+            {
+                EnemyWin(1);
+            }
+            else
+            {
+                //it's a wash
+                Timing.RunCoroutine(DelayEndOfState());
+            }
         }
         else
         {
@@ -65,7 +78,8 @@ public class OutcomeMenu : BattleMenu
 
     private void PlayerWin(int rollDif)
     {
-        int enemyHealthRemaining = BattleManager.GetBattleManager().GetEnemyCharacter().Hurt(rollDif);
+        int damage = Mathf.RoundToInt(rollDif * BattleManager.GetBattleManager().GetBetDamageMultiplier());
+        int enemyHealthRemaining = BattleManager.GetBattleManager().GetEnemyCharacter().Hurt(damage);
 
         if (enemyHealthRemaining < 0)
         {
@@ -78,7 +92,8 @@ public class OutcomeMenu : BattleMenu
 
     private void EnemyWin(int rollDif)
     {
-        BattleManager.GetBattleManager().GetPlayerCharacter().Hurt(rollDif);
+        int damage = Mathf.RoundToInt(rollDif * BattleManager.GetBattleManager().GetBetDamageMultiplier());
+        BattleManager.GetBattleManager().GetPlayerCharacter().Hurt(damage);
 
         Timing.RunCoroutine(DelayEndOfState());
     }
@@ -92,7 +107,6 @@ public class OutcomeMenu : BattleMenu
 
     private bool DidPlayerWin(int playerRoll, int enemyRoll, bool playerHighLowGuess)
     {
-        Debug.Log("PlayerGuessing High: " + playerHighLowGuess);
         if (playerHighLowGuess)
         {
             if (playerRoll > enemyRoll)

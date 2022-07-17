@@ -80,6 +80,7 @@ public class Character : MonoBehaviour
     {
         //can take into account weight class later
         currentRoll = diceRoller.RollWeightedDice(mass);
+
         return currentRoll;
     }
 

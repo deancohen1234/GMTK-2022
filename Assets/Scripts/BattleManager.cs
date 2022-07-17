@@ -27,6 +27,7 @@ public class BattleManager : MonoBehaviour
 
     [Header("Betting")]
     public int maxBet = 5;
+    public float betMultiplier = 0.4f;
 
     private IBattleState[] stateInterfaces;
     private int currentBattleStateIndex = 0;
@@ -177,6 +178,21 @@ public class BattleManager : MonoBehaviour
     {
         playerBet = Mathf.Clamp(playerBet + delta, 0, maxBet);
         return playerBet;
+    }
+
+    public void SetBet(int newBet)
+    {
+        playerBet = newBet;
+    }
+
+    public int GetBet()
+    {
+        return playerBet;
+    }
+
+    public int GetBetDamageMultiplier()
+    {
+        return Mathf.RoundToInt(1f + (betMultiplier * playerBet));
     }
     #endregion
 

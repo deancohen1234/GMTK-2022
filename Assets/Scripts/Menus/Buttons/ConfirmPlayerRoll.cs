@@ -22,7 +22,6 @@ public class ConfirmPlayerRoll : BattleButton
         yield return Timing.WaitForSeconds(preRollDisplayDelay);
 
         //show the roll
-        Debug.Log("Player Rolled a <color=green>" + playerRoll + "</color>");
 
         yield return Timing.WaitForSeconds(postRollDisplayDelay);
 

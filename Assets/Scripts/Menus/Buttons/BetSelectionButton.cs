@@ -13,9 +13,8 @@ public class BetSelectionButton : BattleButton
         //Set guess in battle manager
         int currentBet = BattleManager.GetBattleManager().UpdateBet(betDirection);
 
-        Debug.Log("Updated bet to <color=green>" + currentBet + "</color>");
 
         //tell battle manager to advance to next state
-        //BattleManager.GetBattleManager().AdvanceBattleState();
+        BattleManager.GetBattleManager().UpdateHUDValues();
     }
 }
