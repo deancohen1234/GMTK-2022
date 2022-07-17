@@ -67,7 +67,7 @@ public class Character : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Character: " + gameObject.name + " died");
+        //Debug.Log("Character: " + gameObject.name + " died");
     }
 
     public float GetPercentOfMaxHealth()
@@ -92,6 +92,11 @@ public class Character : MonoBehaviour
     public int GetLastRoll()
     {
         return currentRoll;
+    }
+
+    public void ClearDice()
+    {
+        diceRoller.ClearDice();
     }
 
     public int GetHealth()

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerBet
   m_EditorClassIdentifier: 
   battleMenuPrefab: {fileID: 6981400764975281276, guid: 82e38c1ff896524489b512deb348b818, type: 3}
-  startDelay: 0.75
+  startDelay: 0.25

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerHighLow
   m_EditorClassIdentifier: 
   battleMenuPrefab: {fileID: 845022066301209754, guid: a58f5c54af0c30d45bf4d1d8c54f61cc, type: 3}
-  startDelay: 0.75
+  startDelay: 0.25

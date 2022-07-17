@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerRoll
   m_EditorClassIdentifier: 
   battleMenuPrefab: {fileID: 1344027321579077803, guid: 976199e6a754b78488f7f4fa123c5a0a, type: 3}
-  startDelay: 0.25
+  startDelay: 0.15

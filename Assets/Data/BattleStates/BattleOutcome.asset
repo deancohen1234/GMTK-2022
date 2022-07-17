@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BattleOutcome
   m_EditorClassIdentifier: 
   battleMenuPrefab: {fileID: 6390188783140684450, guid: 84fe5d620e56faf4389136c6f9085b01, type: 3}
-  startDelay: 0.75
+  startDelay: 0.25

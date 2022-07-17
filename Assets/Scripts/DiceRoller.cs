@@ -9,6 +9,7 @@ public class DiceRoller : MonoBehaviour
     public GameObject dicePrefab;
     public float diceMaxLaunchForce = 50f;
     public Vector2 diceMaxLaunchTorqueMinMax = new Vector2(10f, 20f);
+    public Transform spawnPosition;
 
     [Header("Debug")]
     public int desiredDiceRollOverride = 2;
@@ -28,6 +29,19 @@ public class DiceRoller : MonoBehaviour
         diceRotations = new List<Quaternion>();
 
         instantiatedProbability = Instantiate(diceProbablity);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (spawnPosition != null)
+            {
+                SetSpawnTransform(spawnPosition);
+            }
+
+            ThrowDice(desiredDiceRollOverride);
+        }
     }
 
     //private void TestProbability()
@@ -52,6 +66,15 @@ public class DiceRoller : MonoBehaviour
     public void SetSpawnTransform(Transform spawnTransform)
     {
         diceSpawnTransform = spawnTransform;
+    }
+
+    public void ClearDice()
+    {
+        if (launchedDice != null)
+        {
+            Destroy(launchedDice);
+            launchedDice = null;
+        }
     }
 
     public int RollWeightedDice(float characterWeight)
@@ -83,10 +106,6 @@ public class DiceRoller : MonoBehaviour
         diceRB.AddForce(new Vector3(Random.Range(-diceMaxLaunchForce, diceMaxLaunchForce),
             Random.Range(0, 0),
             Random.Range(-diceMaxLaunchForce, diceMaxLaunchForce)));
-
-        //diceRB.AddRelativeTorque(new Vector3(Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque),
-        //    Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque),
-        //    Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque)), ForceMode.VelocityChange);
 
         diceRB.maxAngularVelocity = diceMaxLaunchTorqueMinMax.y * 2f;
         diceRB.angularVelocity = new Vector3(Random.Range(diceMaxLaunchTorqueMinMax.x, diceMaxLaunchTorqueMinMax.y),
@@ -166,14 +185,19 @@ public class DiceRoller : MonoBehaviour
         Quaternion adjustmentRot = Quaternion.identity * Quaternion.FromToRotation(dice.GetDiceAxis(endingFaceUp).axis, dice.GetDiceAxis(desiredUpValue).axis);
 
         //doubleCheck adjustment is correct
-        diceRB.MoveRotation(diceRB.rotation * adjustmentRot);
+        //have to set transforms since GetFaceUpNumber
+        dice.transform.rotation = diceRotations[diceRotations.Count - 1];
+        Physics.SyncTransforms();
         if (dice.GetFaceUpNumber() != desiredUpValue)
         {
             //we got a fucky rotation, reverse it
             adjustmentRot = Quaternion.identity * Quaternion.FromToRotation(dice.GetDiceAxis(desiredUpValue).axis, dice.GetDiceAxis(endingFaceUp).axis);
+            //Debug.Log("Got a fucky ROT");
         }
+
         //reset rotation
-        diceRB.MoveRotation(diceRotations[0]);
+        //diceRB.MoveRotation(diceRotations[0]);
+        diceRB.rotation = diceRotations[0];
 
         if (dice.diceMeshTransform != null)
         {

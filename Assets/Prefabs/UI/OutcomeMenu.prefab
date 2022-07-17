@@ -644,7 +644,7 @@ MonoBehaviour:
   playerRollText: {fileID: 1849560474032052231}
   enemyTextEnd: {fileID: 1849560474959311480}
   playerTextEnd: {fileID: 1849560475137076028}
-  tweenDuration: 0.9
+  tweenDuration: 0.6
   tweenEase: 27
   outcomePreDelay: 0.75
   outcomePostDelay: 2.25

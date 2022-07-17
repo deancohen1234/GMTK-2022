@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using MEC;
 
 public class BattleManager : MonoBehaviour
@@ -115,7 +115,11 @@ public class BattleManager : MonoBehaviour
 
         if (GetEnemyCharacter().IsDead())
         {
-            CycleNewEnemy();
+            Timing.RunCoroutine(CycleNewEnemy());
+        }
+        else if (GetPlayerCharacter().IsDead())
+        {
+            EndGame();
         }
         else
         {
@@ -123,9 +127,15 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void CycleNewEnemy()
+    private IEnumerator<float> CycleNewEnemy()
     {
         //close curtain
+        yield return Timing.WaitForSeconds(1.0f);
+
+        Debug.Log("Cycling new enemy");
+
+        //clear dice
+        currentEnemy.ClearDice();
 
         //destory current enemy
         Destroy(currentEnemy);
@@ -135,15 +145,26 @@ public class BattleManager : MonoBehaviour
         randomNewEnemy.transform.position = enemyStartTransform.position;
         randomNewEnemy.transform.rotation = enemyStartTransform.rotation;
         currentEnemy = randomNewEnemy.GetComponent<Character>();
-        if (currentEnemy == null) { Debug.LogError("No current enemy in Battle Manager!"); return; }
+        if (currentEnemy == null) { Debug.LogError("No current enemy in Battle Manager!"); yield break; }
 
         //open curtain
+        yield return Timing.WaitForSeconds(1.0f);
+
+        AdvanceBattleState();
+    }
+
+    private void EndGame()
+    {
+        Debug.Log("Game Over!");
+        SceneManager.LoadScene(0);
     }
     #endregion
 
-    #region BattleStates
+    #region Battle States
     public void AdvanceBattleState()
     {
+        UpdateHUDValues();
+
         Timing.RunCoroutine(GetCurrentBattleState().ExitState());
 
         //update current state and start next one
