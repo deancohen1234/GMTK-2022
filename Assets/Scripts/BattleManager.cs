@@ -20,6 +20,10 @@ public class BattleManager : MonoBehaviour
     public Transform playerDiceSpawnTransform;
     public Transform enemyDiceSpawnTransform;
 
+    [Header("Background Settings")]
+    public MeshRenderer battleBackgroundRenderer;
+    public Material[] backgroundMaterials;
+
     [Header("UI")]
     //shows player health, enemy health, points, bet odds
     public GameObject mainHUDPrefab;
@@ -171,6 +175,10 @@ public class BattleManager : MonoBehaviour
         randomNewEnemy.transform.rotation = enemyStartTransform.rotation;
         currentEnemy = randomNewEnemy.GetComponent<Character>();
         if (currentEnemy == null) { Debug.LogError("No current enemy in Battle Manager!"); yield break; }
+
+        //update background to random mat
+        Material randomMat = backgroundMaterials[Random.Range(0, backgroundMaterials.Length)];
+        battleBackgroundRenderer.material = randomMat;
 
         AdvanceBattleState();
 
