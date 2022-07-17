@@ -13,6 +13,7 @@ public class GameHUD : BattleMenu
     public Image enemyWeightBar;
     public Transform curtainLeft;
     public Transform curtainRight;
+    public TextMeshProUGUI enemyName;
     public Ease curtainEase = Ease.OutBack;
     public float curtainMoveDuration = 1.0f;
 
@@ -27,6 +28,12 @@ public class GameHUD : BattleMenu
         float fillPercent = (BattleManager.GetBattleManager().GetEnemyCharacter().mass + 1f) * 0.5f;
         enemyWeightBar.fillAmount = fillPercent;
 
+        //update enemy name
+        if (BattleManager.GetBattleManager().GetEnemyCharacter())
+        {
+            enemyName.text = BattleManager.GetBattleManager().GetEnemyCharacter().characterName;
+        }
+
     }
 
     public override void UpdateMenu()
@@ -35,6 +42,12 @@ public class GameHUD : BattleMenu
 
         //recalcuate characters health
         UpdateCharactersHealth();
+
+        //update enemy name
+        if (BattleManager.GetBattleManager().GetEnemyCharacter())
+        {
+            enemyName.text = BattleManager.GetBattleManager().GetEnemyCharacter().characterName;
+        }
     }
 
     public void CloseCurtains()
