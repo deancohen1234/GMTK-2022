@@ -7,6 +7,7 @@ public enum AnimationState { Idle = 0, Attack = 1, Hurt = 2 }
 public class Character : MonoBehaviour
 {
     [Header("Sprites")]
+    public string characterName;
     public SpriteRenderer spriteRenderer;
     public Sprite idleSprite;
     public Sprite attackSprite;
