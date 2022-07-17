@@ -34,7 +34,7 @@ public class DiceRoller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ThrowDice();
         }
@@ -77,14 +77,20 @@ public class DiceRoller : MonoBehaviour
         launchedDice.transform.position = diceSpawnTransform.position;
 
         Rigidbody diceRB = launchedDice.GetComponent<Rigidbody>();
+        diceRB.MovePosition(diceSpawnTransform.position);
 
         diceRB.AddForce(new Vector3(Random.Range(-diceMaxLaunchForce, diceMaxLaunchForce),
             Random.Range(0, 0),
             Random.Range(-diceMaxLaunchForce, diceMaxLaunchForce)));
 
-        diceRB.AddTorque(new Vector3(Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque),
+        //diceRB.AddRelativeTorque(new Vector3(Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque),
+        //    Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque),
+        //    Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque)), ForceMode.VelocityChange);
+
+        diceRB.maxAngularVelocity = diceMaxLaunchTorque * 2f;
+        diceRB.angularVelocity = new Vector3(Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque),
             Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque),
-            Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque)));
+            Random.Range(-diceMaxLaunchTorque, diceMaxLaunchTorque));
 
         SimulateDiceRoll(diceRB, desiredDiceRoll);
 
@@ -96,10 +102,6 @@ public class DiceRoller : MonoBehaviour
 
         dicePositions.Clear();
         diceRotations.Clear();
-
-        //add starting positions
-        dicePositions.Add(diceRB.position);
-        diceRotations.Add(diceRB.rotation);
 
         int endingFaceUp = 0;
         for (int i = 0; i < DICEMAXSIMULATIONS; i++)
@@ -120,13 +122,20 @@ public class DiceRoller : MonoBehaviour
             {
                 //keep keeping track of positions
                 Physics.Simulate(Time.fixedDeltaTime);
+
                 dicePositions.Add(diceRB.position);
                 diceRotations.Add(diceRB.rotation);
             }
         }
 
+        diceRB.position = dicePositions[0];
+        diceRB.rotation = diceRotations[0];
+
+        Physics.Simulate(Time.fixedDeltaTime);
+
         //turn physics on again incase anything needs it
         Physics.autoSimulation = true;
+
 
         //now we have fully simulated the collision
         //now run the simulation through Timing
@@ -148,7 +157,6 @@ public class DiceRoller : MonoBehaviour
 
         //adjust starting rotation so desired face up is where ending faceup is
         //retroactively go through ALL rotations and apply adjustment
-
         Quaternion adjustmentRot = Quaternion.identity * Quaternion.FromToRotation(dice.GetDiceAxis(endingFaceUp).axis, dice.GetDiceAxis(desiredUpValue).axis);
 
         //doubleCheck adjustment is correct
@@ -174,6 +182,8 @@ public class DiceRoller : MonoBehaviour
             diceRB.MoveRotation(diceRotations[simulationIndex]);
             simulationIndex++;
         }
+
+        diceRB.isKinematic = false;
 
     }
 }

@@ -9,12 +9,16 @@ public class Character : MonoBehaviour
     public WeightClass weightClass;
     public int startingHealth;
 
+    protected DiceRoller diceRoller;
+
     protected int health;
     protected int currentRoll;
 
     private void Awake()
     {
         health = startingHealth;
+
+        diceRoller = GetComponent<DiceRoller>();
     }
 
     #region Health
@@ -57,6 +61,7 @@ public class Character : MonoBehaviour
     public int Roll()
     {
         //can take into account weight class later
+        //return diceRoller.RollWeightedDice();
 
         //get a random number between 1-6
         currentRoll = Random.Range(1, 7);

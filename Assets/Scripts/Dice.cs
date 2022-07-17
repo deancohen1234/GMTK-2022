@@ -21,7 +21,7 @@ public class Dice : MonoBehaviour
     public DiceAxis fiveAxis;
     public DiceAxis sixAxis;
 
-    private const float DOTTHRESHOLD = 0.95f;
+    private const float DOTTHRESHOLD = 0.85f;
 
     //not happy with this :(
     public int GetFaceUpNumber()
